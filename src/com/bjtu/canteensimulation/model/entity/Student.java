@@ -1,33 +1,39 @@
 package com.bjtu.canteensimulation.model.entity;
 
-public class Student {
+import com.bjtu.canteensimulation.model.Preference;
+import com.bjtu.canteensimulation.model.enums.StudentState;
 
-    private static int counter = 0;
+public class Student
+{
+    private final long id;
+    private StudentState state;
+    private final double arriveTime;
+    private double queueStartTime;
+    private double waitingTime;
+    private double serviceStartTime;
+    private double serviceDuration;
+    private final Preference preference;
+    private ServiceWindow selectedWindow;
 
-    private final int id;
-    private final long arrivalTime;
+    public Student(long id, double arriveTime, Preference preference) {
+        this.id = id;
+        this.arriveTime = arriveTime;
+        this.preference = preference;
+        this.state = StudentState.ARRIVED;}
+    public long getId() { return id; }
+    public StudentState getState() { return state; }
+    public void setState(StudentState state) { this.state = state; }
+    public double getArriveTime() { return arriveTime; }
+    public double getQueueStartTime() { return queueStartTime; }
+    public void setQueueStartTime(double queueStartTime) { this.queueStartTime = queueStartTime; }
+    public double getWaitingTime() { return waitingTime; }
+    public void setWaitingTime(double waitingTime) { this.waitingTime = waitingTime; }
+    public double getServiceStartTime() { return serviceStartTime; }
+    public void setServiceStartTime(double serviceStartTime) { this.serviceStartTime = serviceStartTime; }
+    public double getServiceDuration() { return serviceDuration; }
+    public void setServiceDuration(double serviceDuration) { this.serviceDuration = serviceDuration; }
+    public Preference getPreference() { return preference; }
+    public ServiceWindow getSelectedWindow() { return selectedWindow; }
+    public void setSelectedWindow(ServiceWindow selectedWindow) { this.selectedWindow = selectedWindow; }
 
-    private String state; // ⚠️ 用字符串兼容旧UI
-
-    public Student(long arrivalTime) {
-        this.id = counter++;
-        this.arrivalTime = arrivalTime;
-        this.state = "ARRIVING";
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public long getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 }
